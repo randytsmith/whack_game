@@ -6,13 +6,11 @@ class App extends React.Component {
   render() {
     return (
       <View>
-        <Image source={require('../img/game-screen-top.png')} />
-        <Image styles = {styles.count} source={require('../img/gameBtn.png')} />
-        <Image styles = {styles.time} source={require('../img/gameBtn.png')} />
-        <View style={styles.container}>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Text>Changes you make will automatically reload.</Text>
-          <Text>Open up App.js to start working on your app!</Text>
+        <Image style = {styles.container} source={require('../img/game-screen-top.png')} />
+        <Image style = {styles.count} source={require('../img/gameBtn.png')} />
+        <Image style = {styles.time} source={require('../img/gameBtn.png')} />
+        <View style = {styles.ground}>
+          <Image style = {styles.holes} source={require('../img/hole.png')} />
         </View>
       </View>
     );
