@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    height: 200,
+    height: '50%',
   },
   count: {
     position: 'absolute',
@@ -20,15 +20,35 @@ const styles = StyleSheet.create({
     height: 40,
   },
   ground: {
+    position: 'absolute',
+    top: 20,
     width: '100%',
     height: '100%',
-    backgroundColor: '#C9BF9C'
+  },
+  mole: {
+    position: 'absolute',
+    width:'25%',
+    top: '50%',
+    // alignSelf: 'center',
   },
   holes: {
-    top: 20,
-    left: 20,
-    width: 150,
-    height: 70,
+    position: 'relative',
+    width: '25%',
+    height: '10%',
+    justifyContent: 'center',
+    backgroundColor: '#C9BF9C'
+  },
+  hole: {
+    position: 'absolute',
+    width: '35%',
+    top: '50%',
+    // alignSelf: 'center',
+  },
+  holemask:{
+    position: 'absolute',
+    width: '34%',
+    top: '50%',
+    // alignSelf: 'center',
   }
 });
 
