@@ -1,33 +1,54 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Animated, Text, View, Image, StyleSheet } from 'react-native';
 import styles from './style.js';
 import Hole from './hole.js';
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      hitCount: 0,
-      time: 6,
-    }
+  state = {
+    hitCount: 0,
+    time: 6,
+    goUpHeight: 3
   }
 
   renderCountButton() {
     return (
-      <View  style = {styles.count} >
-        <Image source={require('../img/gameBtn.png')} />
+      <View style = {styles.count} >
+        <Image style = {styles.button} source={require('../img/gameBtn.png')} resizeMode = 'contain'/>
         <Text> {this.state.hitCount}</Text>
       </View>
     )
   }
-  render() {
+
+  renderTimerButton() {
     return (
-      <View>
-        <Image style = {styles.container} source={require('../img/game-screen-top.png')} />
+      <View style = {styles.time}>
+        <Image style = {styles.button} source={require('../img/gameBtn.png')} resizeMode = 'contain'/>
+        <Text> {this.props.elapseTime}</Text>
+      </View>
+    )
+  }
+
+  // componentDidMount() {
+  //   Animated.timing(                  // Animate over time
+  //     this.state.goUpHeight,            // The animated value to drive
+  //     {
+  //       toValue: 10,                   // Animate to opacity: 1 (opaque)
+  //       duration: 10000,              // Make it take a while
+  //     }
+  //   ).start();                        // Starts the animation
+  // }
+
+  render() {
+    let { goUpHeight } = this.state;
+
+    return (
+      <View style = {styles.container}>
+        <Image style = {styles.header} source={require('../img/game-screen-top.png')} />
         {this.renderCountButton()}
-        <TimeButton elapseTime = {this.state.time}/>
-        <Image style = {styles.hole} source={require('../img/hole.png')} resizeMode = 'contain'/>
-        <Image style = {styles.mole} source = {require('../img/mole.png')} resizeMode = 'contain'/>
+        {this.renderTimerButton()}
+        <Image style = {styles.hole} source = {require('../img/hole.png')} resizeMode = 'contain'/>
+        {/* <Animated.Image style = {{...styles.hole, top: `${35 + goUpHeight }%`}} source={require('../img/hole.png')} resizeMode = 'contain'/> */}
+        <Image style = { StyleSheet.flatten([styles.mole, { top: `${35 + goUpHeight }%`}])} source={require('../img/mole.png')} resizeMode = 'contain'/>
         <Image style = {styles.holemask} source={require('../img/holeMask.png')} resizeMode = 'contain'/>
       </View>
     );
@@ -35,14 +56,6 @@ class App extends React.Component {
 }
 
 class TimeButton extends React.Component {
-  render() {
-    return (
-      <View style = {styles.time}>
-        <Image source={require('../img/gameBtn.png')} />
-        <Text> {this.props.elapseTime}</Text>
-      </View>
-    )
-  }
 }
 
 export default App
